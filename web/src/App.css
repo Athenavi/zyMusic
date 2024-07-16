@@ -1,0 +1,79 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+header {
+    background-color: #c20c0c;
+    padding: 10px 20px;
+    color: white;
+    text-align: center;
+}
+
+.logo{
+    height: 30px;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+/* App.css */
+nav {
+    background-color: #242424; /* 网易云音乐的特色红色背景 */
+    padding: 10px 20px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    padding: 12px 20px;
+    margin: 0 10px;
+    text-decoration: none; /* 去除下划线 */
+    font-weight: bold;
+    border-radius: 5px; /* 圆角边框 */
+    transition: background-color 0.3s; /* 平滑背景色过渡 */
+}
+
+nav a:hover {
+    background-color: #000000; /* 鼠标悬停时的背景色更深 */
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.search_box input{
+    margin-left: 145px;
+    background: #666666;
+    height: 25px;
+    border-radius: 3%;
+}
