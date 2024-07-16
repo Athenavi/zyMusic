@@ -1,12 +1,13 @@
 import os
-import pymysql
 from mutagen.mp3 import MP3
 from mutagen.id3 import ID3
 from datetime import datetime
+from database import get_database_connection
 
 # 连接数据库
-db = pymysql.connect(host="localhost", user="root", password="123456", database="zy_music")
+db = get_database_connection()
 cursor = db.cursor()
+
 
 def add_song_to_database(file_path):
     # 从文件名中提取歌手和歌曲名
@@ -58,10 +59,13 @@ def add_song_to_database(file_path):
         album_id = cursor.lastrowid
 
     # 将歌曲信息插入数据库
-    cursor.execute("INSERT INTO songs (Title, ArtistID, AlbumID, Genre, Duration, ReleaseDate, FilePath, CoverImagePath, Lyrics, Language) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-                   (title, artist_id, album_id, genre, duration, release_date, file_path, cover_image_path, lyrics, language))
+    cursor.execute(
+        "INSERT INTO songs (Title, ArtistID, AlbumID, Genre, Duration, ReleaseDate, FilePath, CoverImagePath, Lyrics, "
+        "Language) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+        (title, artist_id, album_id, genre, duration, release_date, file_path, cover_image_path, lyrics, language))
 
     db.commit()
+
 
 def scan_folder(folder_path):
     for root, dirs, files in os.walk(folder_path):
