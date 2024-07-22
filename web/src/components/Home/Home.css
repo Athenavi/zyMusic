@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     font-family: 'Arial', sans-serif;
     background-color: transparent;
@@ -20,13 +21,18 @@ body::before {
     z-index: -1;
 }
 
-
-.flex-container {
-    padding-top: 20px;
-    display: flex;
-    align-content: center;
+#btn_other_div2 {
+    display: none;
 }
 
+/* Flex Container Styles */
+.flex-container {
+    padding-top: 110px;
+    display: flex;
+    margin-left: 100px;
+}
+
+/* Song Button Styles */
 .songBtn button {
     margin-top: 55px;
     margin-left: 22px;
@@ -44,28 +50,7 @@ body::before {
     background: linear-gradient(135deg, #ff375a, #ff5e78);
 }
 
-.cr {
-    visibility: hidden;
-}
-
-.active {
-    color: greenyellow;
-    font-size: 22px;
-}
-
-.rotating {
-    animation: rotation 48s infinite linear;
-}
-
-@keyframes rotation {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
+/* Song Styles */
 .song {
     margin-top: 30px;
     background-color: white;
@@ -90,21 +75,24 @@ body::before {
 }
 
 .song_artist {
-    color: #ff5e78;
     margin-left: 180px;
     margin-bottom: 160px;
+    color: #ff5e78;
     font-style: italic;
 }
 
+/* Lyrics Div Styles */
 .lrc_div {
+    width: 40%;
     margin-top: 75px;
     margin-left: -50px;
-    width: 30%;
     height: 325px;
     overflow-y: scroll;
 }
 
+/* Other Div Styles */
 .other_div {
+    width: 30%;
     padding: 8px;
     max-width: 60vh;
     overflow-y: scroll;
@@ -120,49 +108,7 @@ body::before {
     text-decoration: none;
 }
 
-
-.audio-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: blue;
-}
-
-.button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: inherit;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 5px;
-    background-color: #363636;
-    cursor: pointer;
-}
-
-.secondMenu {
-    background-color: #c20c0c;
-    padding: 10px 20px;
-    text-align: center;
-    font-size: 12px;
-}
-
-.secondMenu a {
-    color: white;
-    padding: 12px 20px;
-    margin: 0 10px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.secondMenu a:hover {
-    background-color: #9b0909;
-}
-
+/* Player Styles */
 .player {
     position: fixed;
     bottom: 0;
@@ -219,6 +165,7 @@ body::before {
     border: transparent;
 }
 
+/* Scrollbar Styles */
 ::-webkit-scrollbar {
     width: 0px;
     height: 0px;
@@ -228,9 +175,33 @@ body::before {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.remove_btn button {
-}
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .flex-container {
+        flex-direction: column;
+    }
 
-.list_li {
-    list-style-type: none;
+    .lrc_div {
+        max-height: 135px;
+    }
+
+    #btn_other_div {
+        display: None;
+        visibility: visible;
+    }
+
+    .player audio {
+        width: 100%;
+    }
+
+    #btn_other_div2 {
+        border-radius: 100%;
+        background: #ff5e78;
+        visibility: visible;
+        width: 5%;
+    }
+
+    .cr, .lrc_div, .other_div {
+        width: 100%;
+    }
 }

@@ -5,6 +5,8 @@ import CurrentList from "../CurrentList/CurrentList";
 import API_URL from '../../config';
 import './Home.css';
 import {shareThisSong, likeThisSong} from "../func/songMenu";
+import toggleVisable from "../func/toggleVisable";
+
 
 // Playlist component
 const Playlist = ({coverUrl, toggleVisable, likeThisSong, shareThisSong, playing, musicId}) => {
@@ -30,10 +32,10 @@ const Playlist = ({coverUrl, toggleVisable, likeThisSong, shareThisSong, playing
             <div className='songBtn'>
                 <button onClick={() => likeThisSong()}>收藏</button>
                 {/*<button onClick={() => shareThisSong()}>分享</button>*/}
-                <button onClick={() => toggleVisable('lrc_div')}>
+                <button onClick={() => toggleVisable('lrc_div')} id="btn_lrc_div">
                     词
                 </button>
-                <button onClick={() => toggleVisable('other_div')}>
+                <button onClick={() => toggleVisable('other_div')} id="btn_other_div">
                     ≡
                 </button>
             </div>
@@ -60,21 +62,6 @@ function Home({playing, setPlaying, handleNextSong, token, audioRef}) {
             setCoverUrl(`${API_URL}/music_cover/${musicId}.png`);
         }
     }, [playing, musicId]);
-
-
-    const toggleVisable = (id) => {
-        const element = document.getElementById(id);
-        const song_element = document.getElementById('song');
-        const elementDisplay = window.getComputedStyle(element).display;
-
-        if (elementDisplay === 'none') {
-            element.style.display = 'block';
-            if (id === 'lrc_div') song_element.style.width = '55%';
-        } else {
-            element.style.display = 'none';
-            if (id === 'lrc_div') song_element.style.width = '40%';
-        }
-    };
 
 
     useEffect(() => {
@@ -130,10 +117,10 @@ function Home({playing, setPlaying, handleNextSong, token, audioRef}) {
 
     return (
         <div>
+            <div className='cr'>
+                © CopyRight 2002-2024, 7trees.cn
+            </div>
             <div className="flex-container">
-                <div className='cr'>
-                    © CopyRight 2002-2024, 7trees.cn
-                </div>
                 <Playlist
                     coverUrl={coverUrl}
                     toggleVisable={toggleVisable}

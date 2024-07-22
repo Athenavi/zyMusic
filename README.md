@@ -54,17 +54,15 @@ $ npm start
 4. 在浏览器中访问 `http://localhost:3000`，即可进入 zyMusic。
 
 
-音乐数据导入（仅支持.mp3）:
+### 音乐数据导入（仅支持.mp3）:
 1. ok,在此项目之前确保你的数据库已经成功创建
 2. 进入 项目根目录 ，你可以使用python `autoCreate.py` 来为你的数据库导入数据
-3. 在终端中执行以下命令的顺序执行以启动 zyMusic 前台程序
 
-```bash
-$ npm install
-$ npm start
-```
+### 音乐歌词导入 （.lrc）:
+1. 歌词文件放在 `lrc` 文件夹中
+2. 命名方式： `${singer} - ${name}.lrc`
 
-4. 在浏览器中访问 `http://localhost:3000`，即可进入 zyMusic。
+
 
 ## 开源贡献者
 

@@ -713,8 +713,12 @@ def get_lrc(song_id):
 
                         return response
                     else:
-                        print(f"Lyrics file not found: {lrc_filename}")
-                        return "Lyrics file not found", 404
+                        lyrics_default = '[00:00.01]此歌曲暂无歌词'
+                        response = make_response(lyrics_default)
+                        response.headers.set('Content-Disposition', 'attachment', filename=f"{song_id}.lrc")
+                        response.headers.set('Content-Type', 'text/plain')
+                        return response
+
         except Exception as e:
             abort(500, description="An error occurred while retrieving lyrics.")
 

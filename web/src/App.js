@@ -12,6 +12,8 @@ import PlaylistDetail from "./components/playlistDetail/playlistDetail";
 import API_URL from "./config";
 import Logout from "./components/Login/Logout";
 import Singer from "./components/Singer/Singer";
+import toggleVisable from './components/func/toggleVisable'
+
 
 function App() {
     const [token, setToken] = useState(localStorage.getItem('token') || null);
@@ -20,22 +22,27 @@ function App() {
     const [musicId, setMusicId] = useState("0");
 
     useEffect(() => {
+        document.title = "zyMusic"; // 设置浏览器标签的标题
+    }, []); // 使用空数组作为第二个参数，确保这段代码只在组件挂载时执行一次
+
+
+    useEffect(() => {
         localStorage.setItem('token', token);
     }, [token]);
 
     const handleNextSong = (nextMusicId) => {
-    setMusicId(nextMusicId);
+        setMusicId(nextMusicId);
 
-    audioRef.current?.pause();
-    audioRef.current.src = API_URL + `/music/${nextMusicId}.mp3`;
+        audioRef.current?.pause();
+        audioRef.current.src = API_URL + `/music/${nextMusicId}.mp3`;
 
-    // 添加事件监听器，等待新的src加载完成再播放
-    audioRef.current.addEventListener('canplaythrough', () => {
-        audioRef.current.play().then(() => {
-            setPlaying(true);
+        // 添加事件监听器，等待新的src加载完成再播放
+        audioRef.current.addEventListener('canplaythrough', () => {
+            audioRef.current.play().then(() => {
+                setPlaying(true);
+            });
         });
-    });
-};
+    };
 
     useEffect(() => {
         const handleNextSongOnEnded = () => {
@@ -61,7 +68,7 @@ function App() {
 
     return (
         <Router>
-            <nav>
+            <nav id='nav'>
                 <Link to="/"><img src="https://7trees.cn/zyImg/qks2862/chenIn.png" alt="Logo" className="logo"/> zyMusic</Link>
                 <Link to="/discover/playlists">发现音乐</Link>
                 {token ? (
@@ -91,6 +98,9 @@ function App() {
                 >
                     Your browser does not support the audio element.
                 </audio>
+                <button onClick={() => toggleVisable('other_div')} id="btn_other_div2">
+                    ≡
+                </button>
             </div>
             <Routes>
                 <Route path="/" element={<Index token={token}/>}/>
